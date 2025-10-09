@@ -1,0 +1,126 @@
+/* ===== Tokens mínimos ===== */
+:root{
+  --bg: #f7fafc;
+  --ink: #1f2937;
+  --muted: #4b5563;
+  --panel: #ffffff;
+  --accent: #2f7cf6;
+  --accent-press: #1f5ed1;
+  --alert: #cc2936;
+  --radius: 16px;
+  --shadow: 0 8px 24px rgba(0,0,0,.06);
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+}
+
+/* ===== Reset breve y accesible ===== */
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+body{
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+.skip-link{ position:absolute; left:-9999px; top:0; background:#000; color:#fff; padding:.5rem .75rem; border-radius:8px; }
+.skip-link:focus{ left:1rem; top:1rem; z-index: 1000; }
+
+/* ===== Layout 100dvh (3 filas) ===== */
+.screen{
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* ===== Header ===== */
+.header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding: .75rem clamp(1rem, 4vw, 2rem);
+}
+.brand{ color: var(--accent); letter-spacing:.2px; font-weight: 700; }
+.nav{ display:flex; gap:.5rem; flex-wrap: wrap; }
+.nav__link{
+  color: var(--muted); text-decoration: none; padding: .5rem .75rem; border-radius: 10px;
+}
+.nav__link:hover, .nav__link:focus-visible{ background: rgba(47,124,246,.08); color: var(--ink); }
+
+/* ===== Hero ===== */
+.hero{
+  text-align: center; padding: 1rem clamp(1rem, 4vw, 2rem);
+}
+.title{ font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--accent); margin: 0; }
+.lead{
+  margin: .25rem auto 0; color: var(--muted);
+  font-size: clamp(1.05rem, 2.5vw, 1.2rem); line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* ===== Grids de tarjetas ===== */
+.grid{
+  display: grid; gap: 1rem;
+  grid-template-columns: 1fr;
+  width: min(980px, 100%);
+  margin: 1rem auto 0;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+}
+@media (min-width: 760px){
+  .grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1040px){
+  .grid{ grid-template-columns: repeat(3, 1fr); }
+}
+.grid--wide{ grid-template-columns: 1fr; }
+
+/* ===== Tarjeta ===== */
+.item{
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+.item h2{
+  font-size: 1.1rem; margin: 0 0 .35rem; color: var(--ink);
+}
+.info{
+  margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.6;
+}
+.muted{ color: var(--muted); }
+.small{ font-size: .92rem; }
+
+/* ===== Botones ===== */
+.actions{ display:flex; gap:.5rem; flex-wrap:wrap; margin-top: .5rem; }
+.actions--stack{ flex-direction: column; align-items: stretch; }
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height: 44px; min-width: 180px;
+  padding: .85rem 1.1rem; border-radius: 14px;
+  background: var(--accent); color: #fff; text-decoration: none;
+  border: 0; cursor: pointer; font-size: 1.05rem;
+  box-shadow: var(--shadow);
+  transition: background .15s ease, transform .15s ease;
+}
+.btn:hover, .btn:focus-visible{ background: var(--accent-press); transform: translateY(-1px); }
+.btn:active{ transform: translateY(0); }
+.btn--alert{
+  background: var(--alert);
+}
+.btn--alert:hover, .btn--alert:focus-visible{
+  background: #a61f2a;
+}
+
+/* ===== Sección de ayuda ===== */
+.help{
+  text-align: center;
+  padding: 1rem clamp(1rem, 4vw, 2rem) 0;
+}
+.help h2{ font-size: 1.2rem; margin: 0 0 .25rem; }
+.help a{ color: var(--accent); text-decoration: none; }
+.help a:hover, .help a:focus-visible{ text-decoration: underline; }
+
+/* ===== Footer ===== */
+.footer{
+  text-align: center; padding: .75rem clamp(1rem, 4vw, 2rem);
+}
+
+/* ===== Reduce motion ===== */
+@media (prefers-reduced-motion: reduce){
+  .btn{ transition: none; }
+}
